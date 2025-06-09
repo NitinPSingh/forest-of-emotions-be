@@ -35,6 +35,6 @@ model EmotionLog {
   createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @updatedAt @map("updated_at")
   attachment     Json?    @map("attachment")
-
+  priority       Int?
   @@map("emotion_logs")
 }
