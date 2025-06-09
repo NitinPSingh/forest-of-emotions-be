@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model EmotionLog {
+  id             String   @id @default(uuid())
+  
+  emailSubject   String   @map("email_subject")
+  emailBody      String   @map("email_body")
+  
+  emotion        String
+  originalEmotion  String?
+
+  fromName       String?  @map("from_name")
+  fromEmail      String?  @map("from_email")
+  
+  toEmail        String?  @map("to_email")
+
+  messageId      String?  @map("message_id")
+  date           DateTime? @map("date")
+
+  postmarkResponse Json?  @map("postmark_response")
+  analysis         Json?  @map("analysis")
+
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  attachment     Json?    @map("attachment")
+
+  @@map("emotion_logs")
+}
