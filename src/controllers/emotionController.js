@@ -39,7 +39,7 @@ const emotionController = {
       } = req.body;
   
       const result = await hf.textClassification({
-        model: 'SamLowe/roberta-base-go_emotions',
+        model: 'j-hartmann/emotion-english-distilroberta-base',
         inputs: TextBody,
       });
   
